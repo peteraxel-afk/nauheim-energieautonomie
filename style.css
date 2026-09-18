@@ -67,3 +67,8 @@ body>footer:not(.ref-footer){background:#fff;border-top:1px solid #dce7ef;color:
 .subpage-icon{font-size:3rem;display:block;margin-bottom:8px}
 .visual-kpi-row{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.visual-kpi{background:#fff;border:1px solid #dce7ef;border-radius:9px;padding:16px;display:flex;gap:12px;align-items:center}.visual-kpi i{font-style:normal;font-size:2.3rem;color:#0b6d92}.visual-kpi b{display:block;font-size:1.35rem}
 @media(max-width:900px){.subpage-visual-grid{grid-template-columns:1fr 1fr}.visual-kpi-row{grid-template-columns:1fr 1fr}}@media(max-width:600px){.subpage-visual-grid,.visual-kpi-row{grid-template-columns:1fr}}
+
+/* === V5: Nauheim-Karte auf der Startseite === */
+.nauheim-map-section{display:grid;grid-template-columns:.78fr 1.22fr;gap:22px;align-items:stretch;margin:24px auto;padding:0;max-width:1480px;background:#fff;border:1px solid #dce7ef;border-radius:12px;overflow:hidden;box-shadow:0 6px 18px rgba(8,46,89,.08)}
+.nauheim-map-section .map-copy{padding:32px}.nauheim-map-section h2{font-size:2rem;margin:10px 0;color:#082e59}.nauheim-map-section p{line-height:1.6;color:#496274}.map-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}.map-frame{min-height:360px;background:#dbe8ec;display:flex;flex-direction:column}.map-frame iframe{border:0;width:100%;min-height:330px;flex:1}.map-frame small{padding:8px 12px;background:#f7fafb;color:#526b79;font-size:.72rem}
+@media(max-width:900px){.nauheim-map-section{grid-template-columns:1fr}.map-frame{min-height:320px}.nauheim-map-section .map-copy{padding:24px}}
