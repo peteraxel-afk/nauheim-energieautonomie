@@ -75,3 +75,6 @@ body>footer:not(.ref-footer){background:#fff;border-top:1px solid #dce7ef;color:
 
 /* === V6: amtliche Gemeindegrenze Nauheim === */
 #nauheim-boundary-map{width:100%;min-height:350px;flex:1;z-index:1}.map-legend{display:flex;justify-content:space-between;gap:12px;align-items:center;padding:9px 12px;background:#f7fafb;color:#526b79;font-size:.72rem}.map-legend span{font-weight:700;color:#0b6f68}.map-legend i{display:inline-block;width:22px;height:10px;border:3px solid #0b8a75;background:rgba(34,163,122,.12);vertical-align:middle;margin-right:6px}.leaflet-container{font-family:inherit}
+
+/* === V7: Wasserstoff / H2-Tankstelle === */
+.img-h2{background:linear-gradient(135deg,#0a5c86,#13a9a0)}.img-h2station{background:linear-gradient(135deg,rgba(5,60,91,.88),rgba(14,144,132,.78)),url('https://commons.wikimedia.org/wiki/Special:FilePath/Hydrogen_fueling_station.jpg');background-size:cover;background-position:center}
