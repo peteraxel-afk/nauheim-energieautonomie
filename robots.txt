@@ -1,0 +1,11 @@
+User-agent: *
+Allow: /
+# Rechtevorbehalt: automatisiertes Text- und Data-Mining / KI-Training an eigenen geschützten Inhalten ist nicht freigegeben, soweit gesetzlich vorbehaltbar.
+User-agent: GPTBot
+Disallow: /
+User-agent: ChatGPT-User
+Disallow: /
+User-agent: Google-Extended
+Disallow: /
+User-agent: CCBot
+Disallow: /
