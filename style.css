@@ -17,3 +17,35 @@ body{background:#eef5fa}
 @media(max-width:1200px){.ref-header{grid-template-columns:240px 1fr}.top-badge{display:none}.ref-header nav{overflow-x:auto;justify-content:flex-start}.ref-hero{grid-template-columns:1fr}.module-cards{grid-template-columns:repeat(3,1fr)}.ref-kpis{grid-template-columns:repeat(3,1fr)}}
 @media(max-width:800px){.ref-header{height:auto;display:block;padding:10px 16px}.brand{margin-bottom:8px}.ref-header nav{display:flex}.home-ref{padding:0 14px}.ref-hero{margin:0 -14px!important;padding:28px 18px}.ref-hero-copy h1{font-size:42px}.ref-hero-copy h2{font-size:28px}.target-layout{grid-template-columns:1fr}.benefits{display:grid;grid-template-columns:1fr 1fr}.ref-kpis{grid-template-columns:1fr 1fr}.ref-content-grid{grid-template-columns:1fr}.module-cards{grid-template-columns:repeat(2,1fr)}.ref-info{grid-template-columns:1fr}.ref-footer{grid-template-columns:1fr}.ref-footer nav{justify-content:flex-start}}
 @media(max-width:520px){.ref-kpis,.module-cards{grid-template-columns:1fr}.ref-hero-copy h1{font-size:36px}.target-card{padding:12px}.donut-wrap{transform:scale(.9)}}
+
+/* === V3: einheitlicher Dashboard-Stil fuer alle Folgeseiten === */
+body>header:not(.ref-header){position:sticky;top:0;z-index:45;background:#fff;border-bottom:1px solid #dce7ef;box-shadow:none;padding:10px max(24px,calc((100% - 1480px)/2));grid-template-columns:250px minmax(0,1fr);min-height:76px}
+body>header:not(.ref-header) h1{color:#082e59;font-size:1.18rem;line-height:1.05}
+body>header:not(.ref-header) h1:before{color:#4cae46;font-size:2.4rem}
+body>header:not(.ref-header) nav a{color:#082e59;font-size:.78rem;padding:10px 9px}
+body>header:not(.ref-header) nav a:hover,body>header:not(.ref-header) nav a:focus-visible{background:#edf4f8;color:#082e59}
+body>main:not(.home-ref){background:#eef5fa}
+body>main:not(.home-ref) .hero,body>main:not(.home-ref) .page-hero{min-height:245px;margin:0 -24px 22px!important;padding:34px 38px;background:linear-gradient(105deg,rgba(3,48,75,.96),rgba(4,103,101,.88)),linear-gradient(155deg,#1e6d83,#57915f);border-radius:0;color:#fff}
+body>main:not(.home-ref) .hero h2,body>main:not(.home-ref) .page-hero h2{font-size:clamp(2.25rem,4vw,3.55rem);line-height:1.02;color:#fff;margin:10px 0 14px}
+body>main:not(.home-ref) .hero p,body>main:not(.home-ref) .page-hero p{font-size:1.02rem}
+body>main:not(.home-ref) section:not(.hero):not(.page-hero){background:#fff;border:1px solid #dce7ef;border-radius:9px;padding:18px 20px;box-shadow:0 4px 12px rgba(8,46,89,.05)}
+body>main:not(.home-ref) section.cta{background:linear-gradient(100deg,#064b68,#08786e);color:#fff}
+body>main:not(.home-ref) section.cta h2{color:#fff}
+body>main:not(.home-ref) .kpi-strip{padding:0;border-radius:9px;margin:16px 0 22px}
+body>main:not(.home-ref) .energy-grid{gap:12px}
+body>main:not(.home-ref) .energy-card{border-radius:8px;box-shadow:0 4px 12px rgba(8,46,89,.07)}
+/* Seite Energiebausteine: jede Kachel mit thematischem Bild */
+body>main:not(.home-ref) .module-card .energy-visual{height:175px;margin:0;background-size:cover;background-position:center;color:transparent;text-shadow:none}
+body>main:not(.home-ref) .module-card .energy-visual:before{background:linear-gradient(180deg,transparent 50%,rgba(3,45,67,.32));z-index:1}
+body>main:not(.home-ref) .module-card .energy-visual:after{display:none}
+body>main:not(.home-ref) .module-card.wind .energy-visual{background-image:url('https://commons.wikimedia.org/wiki/Special:FilePath/Katensen_Immenburg_park_Wind_Turbines.jpg')}
+body>main:not(.home-ref) .module-card.solar .energy-visual{background-image:url('https://commons.wikimedia.org/wiki/Special:FilePath/Solar_panels_on_a_roof.jpg')}
+body>main:not(.home-ref) .module-card.storage .energy-visual{background-image:url('https://commons.wikimedia.org/wiki/Special:FilePath/Tesvolt_Batteriespeicher_in_Container.jpg')}
+body>main:not(.home-ref) .module-card.bio .energy-visual{background-image:url('https://commons.wikimedia.org/wiki/Special:FilePath/Rehlingen_-_Biogasanlage.jpg')}
+body>main:not(.home-ref) .module-card.heat .energy-visual{background-image:url('https://commons.wikimedia.org/wiki/Special:FilePath/District_heating_pipes.JPG')}
+body>main:not(.home-ref) .module-card.campus .energy-visual{background-image:linear-gradient(rgba(4,57,78,.12),rgba(4,57,78,.25)),url('https://commons.wikimedia.org/wiki/Special:FilePath/Biogas_Photovoltaik_Wind.jpg')}
+body>main:not(.home-ref) .module-card>.kpi,body>main:not(.home-ref) .module-card>h3,body>main:not(.home-ref) .module-card>p,body>main:not(.home-ref) .module-card>.module-meta{margin-left:18px;margin-right:18px}
+body>main:not(.home-ref) .module-card>.kpi{margin-top:14px}
+body>main:not(.home-ref) .module-card>.module-meta{margin-bottom:18px}
+body>footer:not(.ref-footer){background:#fff;border-top:1px solid #dce7ef;color:#082e59;padding:18px max(24px,calc((100% - 1480px)/2))}
+@media(max-width:900px){body>header:not(.ref-header){position:static;display:block;padding:12px 18px}body>main:not(.home-ref) .hero,body>main:not(.home-ref) .page-hero{margin:0 -16px 18px!important;padding:28px 22px}}
