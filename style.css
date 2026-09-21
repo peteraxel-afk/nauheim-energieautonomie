@@ -81,3 +81,28 @@ body>footer:not(.ref-footer){background:#fff;border-top:1px solid #dce7ef;color:
 
 /* PV: Freifläche + Dachanlage getrennt sichtbar */
 .img-pv-roof{background-image:url('https://commons.wikimedia.org/wiki/Special:FilePath/Solar_panels_on_a_roof.jpg');background-size:cover;background-position:center}
+
+/* === Sprint 4: interaktive Projekt-Masterkarte === */
+.project-map{position:relative;min-height:520px;border-radius:12px;overflow:hidden;border:1px solid #c9dbe4;background:radial-gradient(ellipse at 52% 48%,#d8e1d2 0 20%,transparent 21%),linear-gradient(25deg,transparent 48%,rgba(64,105,145,.18) 49% 51%,transparent 52%),repeating-linear-gradient(110deg,#dce8c9 0 70px,#cbdcaf 70px 145px,#e8dfbd 145px 220px);box-shadow:var(--shadow)}
+.map-town{position:absolute;left:40%;top:37%;width:22%;height:25%;display:flex;align-items:center;justify-content:center;border-radius:48% 42% 50% 45%;background:#d6d8d4;border:2px solid #b8c0c1;color:#59666d;font-weight:900;letter-spacing:.12em}
+.map-hotspot{position:absolute;text-decoration:none;display:flex;align-items:center;gap:6px;z-index:3}.map-hotspot span{width:42px;height:42px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:900;border:3px solid #fff;box-shadow:0 3px 10px rgba(0,0,0,.3)}.map-hotspot b{background:rgba(255,255,255,.94);color:#173b54;padding:4px 7px;border-radius:6px;font-size:.72rem;box-shadow:0 2px 6px rgba(0,0,0,.12)}.map-hotspot:hover span,.map-hotspot:focus-visible span{transform:scale(1.12)}
+.map-hotspot.pv span{background:#d456a4}.map-hotspot.wind span{background:#2d9b54}.map-hotspot.bio span{background:#d83932}.map-hotspot.h2 span{background:#177dcc}.map-hotspot.station span{background:#20272d}
+.pv1{left:17%;top:55%}.pv2{left:68%;top:56%}.w1{left:25%;top:17%}.w2{left:54%;top:12%}.w3{left:76%;top:30%}.w4{left:68%;top:75%}.b1{left:28%;top:67%}.b2{left:61%;top:47%}.map-hotspot.h2{left:63%;top:58%}.map-hotspot.station{left:57%;top:67%}
+.map-linkbar{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}.map-linkbar a{padding:8px 12px;border-radius:999px;background:#edf4f8;color:#075b75;text-decoration:none;font-weight:800;font-size:.8rem}
+@media(max-width:700px){.project-map{min-height:420px}.map-hotspot b{display:none}.map-hotspot span{width:34px;height:34px;font-size:.75rem}.map-town{left:35%;width:30%}}
+
+/* === Sprint 5: gemeinsame Navigation === */
+.site-nav{display:flex;align-items:center;justify-content:flex-end;gap:3px;flex-wrap:wrap;min-width:0}
+.site-nav>a,.nav-project>summary{color:#082e59;text-decoration:none;font-weight:650;font-size:.78rem;padding:9px 8px;border-radius:8px;white-space:nowrap;cursor:pointer;list-style:none}
+.nav-project{position:relative}.nav-project>summary::-webkit-details-marker{display:none}.nav-project>summary:after{content:" ▾";font-size:.7em}.nav-project[open]>summary,.site-nav>a:hover,.nav-project>summary:hover{background:#edf4f8}
+.nav-project>div{position:absolute;right:0;top:calc(100% + 5px);min-width:210px;padding:7px;background:#fff;border:1px solid #dce7ef;border-radius:9px;box-shadow:0 10px 24px rgba(8,46,89,.15);z-index:80}
+.nav-project>div a{display:block;color:#082e59;text-decoration:none;padding:8px 10px;border-radius:6px;font-size:.8rem}.nav-project>div a:hover{background:#edf4f8}
+.ref-header .site-nav{justify-content:center;flex-wrap:nowrap;overflow:visible}.ref-header .site-nav>a,.ref-header .nav-project>summary{font-size:12px;padding:18px 7px}
+.subpage-visual[href]{text-decoration:none}.subpage-visual[href]:focus-visible{outline:3px solid var(--orange);outline-offset:3px}
+@media(max-width:1200px){.ref-header .site-nav{overflow-x:auto;justify-content:flex-start}.nav-project>div{position:fixed;right:18px;top:72px}}
+@media(max-width:900px){.site-nav{justify-content:flex-start}.site-nav>a,.nav-project>summary{font-size:.76rem;padding:8px 7px}}
+@media(max-width:600px){.site-nav{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:4px}.site-nav>a,.nav-project>summary{text-align:center;background:#f2f6f8}.nav-project>div{position:fixed;left:16px;right:16px;top:110px}}
+
+/* Sprint 5: klickbare Startseitenmodule */
+.home-module{display:block;color:inherit;text-decoration:none;border:1px solid #dce7ef;border-radius:7px;overflow:hidden;background:#fff;transition:.18s}
+.home-module:hover{transform:translateY(-2px);box-shadow:0 8px 18px rgba(8,46,89,.12)}.home-module:focus-visible{outline:3px solid var(--orange);outline-offset:3px}
