@@ -118,3 +118,29 @@ body>footer:not(.ref-footer){background:#fff;border-top:1px solid #dce7ef;color:
 }
 .portal-banner .banner-title{display:none}
 @media(max-width:900px){.portal-banner{height:180px;background-position:center}}
+
+/* FINAL Website QA 2026-09-28 */
+.portal-header{position:sticky;top:0;z-index:50;display:flex;align-items:center;gap:18px;padding:11px max(20px,calc((100% - 1480px)/2));background:linear-gradient(90deg,#073f61,#00686d)}
+.portal-brand{color:#fff;text-decoration:none;font-weight:900;white-space:nowrap;font-size:1rem}
+.portal-nav{display:flex;justify-content:flex-end;gap:2px;flex:1;flex-wrap:wrap}
+.portal-nav a{color:#eefbfc;text-decoration:none;font-size:.78rem;font-weight:700;padding:8px 7px;border-radius:7px}
+.portal-nav a:hover,.portal-nav a.active{background:rgba(255,255,255,.16);color:#fff}
+.portal-main{max-width:1480px;margin:0 auto;padding:24px}
+.portal-main>h1{font-size:clamp(2rem,4vw,3.4rem);line-height:1;margin:8px 0 12px;color:var(--navy)}
+.leadline{font-size:1.08rem;color:var(--muted);max-width:980px;margin-bottom:24px}
+.portal-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin:16px 0 28px}
+.portal-grid.two{grid-template-columns:repeat(2,minmax(0,1fr))}
+.portal-grid.six{grid-template-columns:repeat(3,minmax(0,1fr))}
+.portal-card{background:#fff;border:1px solid var(--line);border-radius:11px;padding:21px;box-shadow:var(--shadow);min-width:0}
+.portal-card h2,.portal-card h3{margin-top:0}
+.portal-card a{font-weight:800;color:#075cad}
+.portal-footer{display:flex;align-items:center;gap:18px;flex-wrap:wrap;padding:22px max(24px,calc((100% - 1480px)/2));background:#fff;border-top:1px solid var(--line)}
+.portal-footer strong{margin-right:auto}
+.portal-footer a{color:var(--navy);font-weight:700;text-decoration:none}
+.portal-banner{background-image:url('banner_web.jpg');background-size:cover;background-position:center;height:245px;margin:0}
+.portal-banner:before,.portal-banner:after{display:none!important;content:none!important}
+.portal-banner .banner-title{display:none!important}
+.discussion-note{font-size:.88rem;color:var(--muted);border-top:1px solid var(--line);padding-top:12px}
+.contact-disabled{min-height:190px}
+@media(max-width:1100px){.portal-header{position:static;display:block}.portal-brand{display:block;margin-bottom:8px}.portal-nav{justify-content:flex-start}.portal-grid,.portal-grid.six{grid-template-columns:repeat(2,minmax(0,1fr))}.portal-banner{height:205px}}
+@media(max-width:700px){.portal-main{padding:18px 14px}.portal-nav{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:4px}.portal-nav a{text-align:center;background:rgba(255,255,255,.07);padding:8px 5px;font-size:.72rem}.portal-grid,.portal-grid.two,.portal-grid.six,.contact-grid,.stat-row{grid-template-columns:1fr!important}.portal-banner{height:150px;background-size:cover;background-position:center}.portal-footer{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:18px 14px}.portal-footer strong{grid-column:1/-1}table{display:block;overflow-x:auto;-webkit-overflow-scrolling:touch}}
