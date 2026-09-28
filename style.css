@@ -144,3 +144,143 @@ body>footer:not(.ref-footer){background:#fff;border-top:1px solid #dce7ef;color:
 .contact-disabled{min-height:190px}
 @media(max-width:1100px){.portal-header{position:static;display:block}.portal-brand{display:block;margin-bottom:8px}.portal-nav{justify-content:flex-start}.portal-grid,.portal-grid.six{grid-template-columns:repeat(2,minmax(0,1fr))}.portal-banner{height:205px}}
 @media(max-width:700px){.portal-main{padding:18px 14px}.portal-nav{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:4px}.portal-nav a{text-align:center;background:rgba(255,255,255,.07);padding:8px 5px;font-size:.72rem}.portal-grid,.portal-grid.two,.portal-grid.six,.contact-grid,.stat-row{grid-template-columns:1fr!important}.portal-banner{height:150px;background-size:cover;background-position:center}.portal-footer{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:18px 14px}.portal-footer strong{grid-column:1/-1}table{display:block;overflow-x:auto;-webkit-overflow-scrolling:touch}}
+
+
+/* === Farbkonzept V2.1 – 2026-09-28 ===
+   Banner bewusst NICHT veraendert. Nur Inhalte unterhalb des Banners. */
+.portal-main{
+  max-width:1600px;
+  margin:0 auto;
+  padding:24px 28px 38px;
+  background:linear-gradient(180deg,#f8fcff 0%,#eef6fb 100%);
+}
+.portal-main>h1{
+  margin:0 0 4px;
+  color:#073b78;
+  font-size:clamp(2.35rem,4vw,3.55rem);
+  line-height:1.02;
+  letter-spacing:-.045em;
+}
+.portal-main>.leadline{
+  margin:0 0 24px;
+  color:#294d78;
+  font-size:1.12rem;
+  font-weight:650;
+}
+.portal-grid{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:16px;
+  margin:18px 0 28px;
+}
+.portal-grid.six{grid-template-columns:repeat(3,minmax(0,1fr))}
+.portal-card{
+  position:relative;
+  overflow:hidden;
+  background:#fff;
+  border:1px solid #d9e7f2;
+  border-radius:12px;
+  padding:22px;
+  box-shadow:0 7px 20px rgba(6,54,107,.09);
+}
+.portal-card:before{
+  content:"";
+  position:absolute;
+  left:0;top:0;right:0;
+  height:6px;
+  background:#148fe0;
+}
+.portal-card h2,.portal-card h3{color:#073b78;margin-top:5px}
+.portal-card a{color:#075da9;font-weight:800;text-decoration:none}
+.portal-card a:hover{text-decoration:underline}
+.portal-card .big{font-size:2rem;font-weight:900;color:#075da9;margin:.25rem 0}
+
+/* Themenfarben nach den freigegebenen Entwuerfen */
+.portal-grid>.portal-card:nth-child(5n+1):before{background:#168be0}
+.portal-grid>.portal-card:nth-child(5n+2):before{background:#45a63b}
+.portal-grid>.portal-card:nth-child(5n+3):before{background:#7b35c8}
+.portal-grid>.portal-card:nth-child(5n+4):before{background:#18a7df}
+.portal-grid>.portal-card:nth-child(5n+5):before{background:#f07822}
+.portal-grid>.portal-card:nth-child(5n+1) h2,
+.portal-grid>.portal-card:nth-child(5n+1) h3{color:#0865b5}
+.portal-grid>.portal-card:nth-child(5n+2) h2,
+.portal-grid>.portal-card:nth-child(5n+2) h3{color:#27812d}
+.portal-grid>.portal-card:nth-child(5n+3) h2,
+.portal-grid>.portal-card:nth-child(5n+3) h3{color:#6c2ab5}
+.portal-grid>.portal-card:nth-child(5n+4) h2,
+.portal-grid>.portal-card:nth-child(5n+4) h3{color:#078bc1}
+.portal-grid>.portal-card:nth-child(5n+5) h2,
+.portal-grid>.portal-card:nth-child(5n+5) h3{color:#d95b12}
+
+/* Projektkarten: staerker wie die abgestimmten Bildvorlagen */
+.project-card{
+  min-height:150px;
+  transition:transform .18s ease,box-shadow .18s ease;
+}
+.project-card:hover{transform:translateY(-3px);box-shadow:0 13px 28px rgba(6,54,107,.16)}
+.project-card:after{
+  content:"";
+  position:absolute;
+  width:110px;height:110px;
+  right:-35px;bottom:-45px;
+  border-radius:50%;
+  background:currentColor;
+  opacity:.055;
+}
+
+/* Phasen / Massnahmen */
+.phase{
+  display:grid;
+  grid-template-columns:minmax(170px,240px) 1fr;
+  gap:18px;
+  align-items:center;
+  margin:10px 0;
+  padding:17px 20px;
+  border-radius:10px;
+  border:1px solid #d9e7f2;
+  background:#fff;
+}
+.phase:nth-child(1){border-left:8px solid #168be0;background:linear-gradient(90deg,#e8f5ff,#fff 28%)}
+.phase:nth-child(2){border-left:8px solid #58b84a;background:linear-gradient(90deg,#edf9e9,#fff 28%)}
+.phase:nth-child(3){border-left:8px solid #f3a23c;background:linear-gradient(90deg,#fff4e3,#fff 28%)}
+.phase:nth-child(4){border-left:8px solid #8b49cc;background:linear-gradient(90deg,#f5ecff,#fff 28%)}
+.phase:nth-child(5){border-left:8px solid #075da9;background:linear-gradient(90deg,#e8f2fb,#fff 28%)}
+.phase b{font-size:1.05rem;color:#073b78}
+
+/* Tabellen erhalten mehr visuelle Fuehrung */
+.portal-card table th{background:#e6f2fb;color:#073b78}
+.portal-card table tr:nth-child(even) td{background:#f7fbfe}
+
+/* Navigation: weisser, ruhiger Kopf wie in den Vorlagen; Banner bleibt unberuehrt */
+.portal-header{
+  background:#fff;
+  border-bottom:1px solid #dbe6ef;
+  box-shadow:0 2px 9px rgba(6,54,107,.08);
+}
+.portal-brand{color:#073b78!important;font-weight:900;text-decoration:none}
+.portal-nav a{color:#073b78!important;background:transparent}
+.portal-nav a:hover{background:#edf6fc!important}
+.portal-nav a.active{
+  background:#edf6fc!important;
+  box-shadow:inset 0 -3px #169ee4;
+}
+.portal-footer{
+  background:#073b78;
+  color:#fff;
+  display:flex;
+  gap:20px;
+  flex-wrap:wrap;
+  align-items:center;
+}
+.portal-footer a{color:#fff;text-decoration:none}
+.portal-footer strong{margin-right:auto}
+
+/* Karten auf kleineren Bildschirmen */
+@media(max-width:1000px){
+  .portal-grid,.portal-grid.six{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(max-width:650px){
+  .portal-main{padding:20px 16px 30px}
+  .portal-grid,.portal-grid.six{grid-template-columns:1fr}
+  .phase{grid-template-columns:1fr;gap:5px}
+}
