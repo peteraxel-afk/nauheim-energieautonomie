@@ -366,3 +366,54 @@ body>footer:not(.ref-footer){background:#fff;border-top:1px solid #dce7ef;color:
 @media(max-width:1250px){.section-nav{grid-template-columns:repeat(4,1fr)}}
 @media(max-width:800px){.section-nav{grid-template-columns:repeat(2,1fr)}.portal-card.wide{grid-column:auto}}
 @media(max-width:480px){.section-nav{grid-template-columns:1fr 1fr}.navtile{min-height:110px}}
+
+
+/* === Themenbilder unter dem bestehenden Banner ===
+   Das portal-banner bleibt unveraendert. */
+.energy-picture-ribbon{
+ display:grid;
+ grid-template-columns:repeat(5,minmax(0,1fr));
+ gap:12px;
+ margin:18px 0 26px;
+}
+.energy-pic{
+ position:relative;
+ min-height:132px;
+ border-radius:11px;
+ overflow:hidden;
+ background-size:cover;
+ background-position:center;
+ text-decoration:none!important;
+ box-shadow:0 7px 18px rgba(4,47,91,.18);
+ border:1px solid rgba(255,255,255,.75);
+ transition:transform .18s ease,box-shadow .18s ease;
+}
+.energy-pic:hover{transform:translateY(-3px);box-shadow:0 12px 25px rgba(4,47,91,.25)}
+.energy-pic:after{
+ content:"";
+ position:absolute;inset:0;
+ background:linear-gradient(180deg,rgba(0,0,0,.02) 30%,rgba(0,31,70,.82) 100%);
+}
+.energy-pic span{
+ position:absolute;z-index:2;left:12px;right:12px;bottom:10px;
+ color:#fff;font-weight:900;font-size:1.03rem;line-height:1.08;
+ text-shadow:0 1px 3px rgba(0,0,0,.45);
+}
+.ep-pv{background-image:url("https://images.unsplash.com/photo-1509391366360-2e959784a276?auto=format&fit=crop&q=82&w=900")}
+.ep-biogas{background-image:url("https://images.unsplash.com/photo-1673208769691-e74104d853fd?auto=format&fit=crop&q=82&w=900")}
+.ep-wind{background-image:url("https://images.unsplash.com/photo-1771523353088-eb24e83d3915?auto=format&fit=crop&q=82&w=900")}
+.ep-h2{background-image:url("https://unsplash.com/photos/tbnLf3o9JOo/download?force=true")}
+.ep-heat{background-image:url("https://images.unsplash.com/photo-1776860155275-eee24bfb1dee?auto=format&fit=crop&q=82&w=900")}
+.ep-pv{border-bottom:6px solid #168be0}
+.ep-biogas{border-bottom:6px solid #45a63b}
+.ep-wind{border-bottom:6px solid #7b35c8}
+.ep-h2{border-bottom:6px solid #18a7df}
+.ep-heat{border-bottom:6px solid #f07822}
+
+@media(max-width:1050px){
+ .energy-picture-ribbon{grid-template-columns:repeat(3,1fr)}
+}
+@media(max-width:650px){
+ .energy-picture-ribbon{grid-template-columns:1fr 1fr}
+ .energy-pic{min-height:110px}
+}
