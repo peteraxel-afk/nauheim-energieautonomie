@@ -417,3 +417,30 @@ body>footer:not(.ref-footer){background:#fff;border-top:1px solid #dce7ef;color:
  .energy-picture-ribbon{grid-template-columns:1fr 1fr}
  .energy-pic{min-height:110px}
 }
+
+
+/* === Bilder direkt an Energie-Ueberschriften === */
+.topic-card{padding-top:0!important}
+.topic-card .topic-image{
+ height:150px;margin:0 -22px 17px;background-size:cover;background-position:center;
+ border-bottom:1px solid #d9e7f2;
+}
+.topic-card.topic-wind .topic-image,.topic-hero-image.topic-wind{background-image:url("https://images.unsplash.com/photo-1771523353088-eb24e83d3915?auto=format&fit=crop&q=82&w=1200")}
+.topic-card.topic-pv .topic-image,.topic-hero-image.topic-pv{background-image:url("https://images.unsplash.com/photo-1509391366360-2e959784a276?auto=format&fit=crop&q=82&w=1200")}
+.topic-card.topic-biogas .topic-image,.topic-hero-image.topic-biogas{background-image:url("https://images.unsplash.com/photo-1673208769691-e74104d853fd?auto=format&fit=crop&q=82&w=1200")}
+.topic-card.topic-h2 .topic-image,.topic-hero-image.topic-h2{background-image:url("https://unsplash.com/photos/tbnLf3o9JOo/download?force=true")}
+.topic-card.topic-heat .topic-image,.topic-hero-image.topic-heat{background-image:url("https://images.unsplash.com/photo-1776860155275-eee24bfb1dee?auto=format&fit=crop&q=82&w=1200")}
+.topic-card.topic-storage .topic-image,.topic-hero-image.topic-storage{background-image:linear-gradient(135deg,#6f2fc3,#c1a6ef)}
+.topic-card.topic-building .topic-image,.topic-hero-image.topic-building{background-image:linear-gradient(135deg,#1ca3aa,#b7e6d9)}
+.topic-card.topic-wind{border-top-color:#7b35c8!important}
+.topic-card.topic-pv{border-top-color:#168be0!important}
+.topic-card.topic-biogas{border-top-color:#45a63b!important}
+.topic-card.topic-h2{border-top-color:#18a7df!important}
+.topic-card.topic-heat{border-top-color:#f07822!important}
+.topic-card.topic-storage{border-top-color:#7b35c8!important}
+.topic-card.topic-building{border-top-color:#1ca3aa!important}
+.topic-hero-image{
+ height:250px;border-radius:12px;margin:14px 0 18px;background-size:cover;background-position:center;
+ box-shadow:0 8px 22px rgba(5,48,94,.16);
+}
+@media(max-width:650px){.topic-card .topic-image{height:120px}.topic-hero-image{height:180px}}
