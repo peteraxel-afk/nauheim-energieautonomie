@@ -454,3 +454,6 @@ body>footer:not(.ref-footer){background:#fff;border-top:1px solid #dce7ef;color:
 .ep-heat,.topic-card.topic-heat .topic-image,.topic-hero-image.topic-heat,.img-heat{background-image:url("waermeversorgung.jpg")!important}
 .topic-card.topic-storage .topic-image,.topic-hero-image.topic-storage,.img-storage{background-image:url("stromspeicher.jpg")!important}
 .topic-card.topic-building .topic-image,.topic-hero-image.topic-building{background-image:url("gebaeude-effizienz.jpg")!important}
+
+/* FINAL local image mapping */
+.topic-card.topic-h2station .topic-image,.topic-hero-image.topic-h2station{background-image:url("h2-tankstelle.jpg");background-size:cover;background-position:center}
