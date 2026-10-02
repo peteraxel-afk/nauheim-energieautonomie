@@ -42,18 +42,18 @@
  const winds=[[49.954694,8.466823],[49.941770,8.439014],[49.941218,8.463046],[49.938124,8.451030]];
  winds.forEach((p,i)=>L.circleMarker(p,{radius:9,color:'#21a64a',weight:4,fill:false}).bindPopup('<b>Wind-'+String.fromCharCode(65+i)+'</b><br><small>Grüner Kreis = Windkraft · PROJECT-Standortidee, nicht final/genehmigt.</small>').addTo(windLayer));
  const pvLineStyle={color:'#e51c23',weight:5,opacity:.95};
- // PV-Linien 1:1 nach der vom Nutzer am 02.10.2026 hochgeladenen Masterkarte übertragen.
+ // PV-Markierungen nach der korrigierten Nutzerkarte vom 02.10.2026.
  const pvLines=[
-  [[49.949945,8.443992],[49.944863,8.453777]],
-  [[49.950055,8.445537],[49.945858,8.453777]],
-  [[49.937572,8.442790],[49.942654,8.450687]],
-  [[49.936909,8.445193],[49.941770,8.452918]],
-  [[49.950608,8.461673],[49.952043,8.466823]],
-  [[49.948398,8.461330],[49.944753,8.460300]],
-  [[49.942765,8.460300],[49.939008,8.465450]],
-  [[49.939229,8.465621],[49.948840,8.468024]]
+  [[49.950055,8.447768],[49.947624,8.452661]],
+  [[49.950331,8.448627],[49.948232,8.452661]],
+  [[49.946464,8.450343],[49.943702,8.446223]],
+  [[49.945691,8.451202],[49.943371,8.447339]],
+  [[49.951160,8.458497],[49.950442,8.455579]],
+  [[49.949448,8.455665],[49.947403,8.455064]],
+  [[49.946574,8.455150],[49.944531,8.457725]],
+  [[49.944531,8.457725],[49.949613,8.458927]]
  ];
- pvLines.forEach((pts,i)=>L.polyline(pts,pvLineStyle).bindPopup('<b>PV-Planungsmarkierung '+(i+1)+'</b><br><small>Roter Strich = Position gemäß Nutzer-Masterkarte vom 02.10.2026; Planungsansatz, keine Grundstücks- oder Genehmigungsfestlegung.</small>').addTo(pvLayer));
+ pvLines.forEach((pts,i)=>L.polyline(pts,pvLineStyle).bindPopup('<b>PV-Planungsmarkierung '+(i+1)+'</b><br><small>Roter Strich = Position gemäß korrigierter Nutzerkarte vom 02.10.2026; Planungsansatz, keine Grundstücks- oder Genehmigungsfestlegung.</small>').addTo(pvLayer));
  const planLegend=L.control({position:'bottomright'}); planLegend.onAdd=function(){const d=L.DomUtil.create('div','portal-card');d.style.padding='9px';d.style.maxWidth='270px';d.innerHTML='<b>Planungsidee · nicht final</b><br><span style="color:#21a64a;font-size:18px">○</span> Grüner Kreis = Windkraft<br><span style="color:#2456c7">▲</span> Blaues Dreieck = Biogas<br><span style="color:#e51c23;font-weight:900">━</span> Roter Strich = PV<br><span style="color:#2456c7">▲</span> Energiecampus = Biogas + H₂ + H₂-Tankstelle<br><small>Alle Symbole zeigen PROJECT-Planungsansätze.</small>';return d};
  for(let i=1;i<=23;i++){
    const id='TR-'+String(i).padStart(3,'0');
