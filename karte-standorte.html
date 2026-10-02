@@ -17,30 +17,7 @@
  const map=L.map('real-map',{scrollWheelZoom:false}).setView([49.95,8.45],13);
  L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:19,attribution:'&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'}).addTo(map);
  const project=L.layerGroup().addTo(map);
- L.marker([49.95,8.45]).bindPopup('<b>Nauheim, Hessen</b><br>Orientierungspunkt Ortslage – kein Projektstandort.').addTo(project);
- const known=L.layerGroup();
- const trafos=L.layerGroup();
- const searchAreas=L.layerGroup();
- const planAreas=L.layerGroup();
- const biogasLayer=L.layerGroup();
- const h2Layer=L.layerGroup();
- const pvLayer=L.layerGroup().addTo(map);
- // Karte bewusst leer: Projektlinien, Kreise und Dreiecke entfernt.
- const windLayer=L.layerGroup();
- // Suchräume werden bewusst nur als schematische PROJECT-Flächen innerhalb der realen Basiskarte geführt.
- // Sie sind keine Flurstücke, Eigentumsgrenzen oder genehmigungsfähigen Standorte.
- const searchLegend=L.control({position:'bottomleft'}); searchLegend.onAdd=function(){const d=L.DomUtil.create('div','portal-card');d.style.padding='9px';d.innerHTML='<b>PROJECT-Suchräume</b><br>PV-West · PV-Ost · PV-Süd · PV-Energiecampus<br>Wind-A · Wind-B · Wind-C · Wind-D<br><small>Keine Grundstücks-/Genehmigungsfestlegung</small>';return d};
- // Nur belastbare Adressen werden geokodiert; keine Koordinaten werden erfunden.
- const knownAddresses=[
-   {name:'Aussiedlerhof / Kuhlmann',address:'Berzallee 15, 64569 Nauheim, Deutschland',status:'bekannter Projekt-Referenzpunkt'},
-   {name:'Kläranlage Nauheim',address:'Außerhalb 16, 64569 Nauheim, Deutschland',status:'bekannter Standort · eigenes Trafohäuschen im Projektbestand'},
-   {name:'Feuerwehr / Umfeld Energiecampus',address:'Außerhalb 15, 64569 Nauheim, Deutschland',status:'Referenz im Energiecampus-Umfeld'}
- ];
- async function geocodeKnown(){
-   for(const x of knownAddresses){try{
-     const u='https://nominatim.openstreetmap.org/search?format=json&limit=1&countrycodes=de&q='+encodeURIComponent(x.address);
-     const r=await fetch(u,{headers:{'Accept':'application/json'}}); const a=await r.json();
-     if(a&&a[0]) { const p=[+a[0].lat,+a[0].lon]; L.marker(p).bindPopup('<b>'+x.name+'</b><br>'+x.address+'<br><small>'+x.status+'</small>').addTo(known); if(x.name.indexOf('Aussiedlerhof')===0) { const bioPlan=[49.949172,8.461330]; L.marker(bioPlan,{icon:L.divIcon({className:'',html:'<div class="map-triangle"></div>',iconSize:[22,20],iconAnchor:[11,10]})}).bindPopup('<b>Biogas · Aussiedlerhof / nördlicher Planungsraum</b><br><small>Blaues Dreieck = Planungsposition gemäß Masterkarte; keine Grundstücks- oder Genehmigungsfestlegung.</small>').addTo(biogasLayer); } }
+  } }
    }catch(e){}}
  }
  geocodeKnown();
@@ -48,7 +25,7 @@
  // Feuerwehr ist als realer Referenzpunkt Außerhalb 15 verifiziert; die Projektanlagen bleiben PROJECT.
  const campus=[49.943427,8.460815];
  const campusIcon=L.divIcon({className:'',html:'<div class="map-triangle campus-triangle"></div>',iconSize:[22,20],iconAnchor:[11,10]});
- L.marker(campus,{icon:campusIcon}).bindPopup('<b>Energiecampus</b><br>Biogas + H₂-Erzeugung + H₂-Tankstelle<br><small>Blaues Dreieck = gemeinsamer PROJECT-Standort / Planungsansatz.</small>').addTo(biogasLayer);
+ 
  L.marker(campus,{icon:campusIcon}).bindPopup('<b>Energiecampus</b><br>Biogas + H₂-Erzeugung + H₂-Tankstelle<br><small>Blaues Dreieck = gemeinsamer PROJECT-Standort / Planungsansatz.</small>').addTo(h2Layer);
  const storagePts=[[49.956,8.445],[49.952,8.452],[49.948,8.456],[49.944,8.449],[49.950,8.437],[49.958,8.458]];
  storagePts.forEach((p,i)=>L.circleMarker(p,{radius:7,color:'#6f2fc3',fillColor:'#8b49cc',fillOpacity:.82}).bindPopup('<b>Batteriespeicher · Beispiel '+(i+1)+'</b><br><small>Standort noch nicht final. Symbolische Auswahl; Zielarchitektur insgesamt 23 × 5 MWh.</small>').addTo(planAreas));
@@ -80,4 +57,6 @@
    if(feats.length){const layer=L.geoJSON({type:'FeatureCollection',features:feats},{style:{weight:3,fillOpacity:.04}}).addTo(map);map.fitBounds(layer.getBounds(),{padding:[12,12]})}
  }).catch(()=>{});
 })();
+
+ [windLayer,pvLayer,biogasLayer,campusLayer].forEach(layer=>layer.clearLayers());
 </script></body></html>
