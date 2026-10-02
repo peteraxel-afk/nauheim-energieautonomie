@@ -12,7 +12,7 @@
  const planAreas=L.layerGroup();
  const biogasLayer=L.layerGroup();
  const h2Layer=L.layerGroup();
- const pvLayer=L.layerGroup();
+ const pvLayer=L.layerGroup().addTo(map);
  const windLayer=L.layerGroup();
  // Suchräume werden bewusst nur als schematische PROJECT-Flächen innerhalb der realen Basiskarte geführt.
  // Sie sind keine Flurstücke, Eigentumsgrenzen oder genehmigungsfähigen Standorte.
@@ -42,18 +42,21 @@
  const winds=[[49.954694,8.466823],[49.941770,8.439014],[49.941218,8.463046],[49.938124,8.451030]];
  winds.forEach((p,i)=>L.circleMarker(p,{radius:9,color:'#21a64a',weight:4,fill:false}).bindPopup('<b>Wind-'+String.fromCharCode(65+i)+'</b><br><small>Grüner Kreis = Windkraft · PROJECT-Standortidee, nicht final/genehmigt.</small>').addTo(windLayer));
  const pvLineStyle={color:'#e51c23',weight:5,opacity:.95};
- // PV-Markierungen nach der korrigierten Nutzerkarte vom 02.10.2026.
+ // SCHRITT 1 · rote PV-Korridore entlang Bahn- und Autostraßenachsen nach Nutzerkarte 02.10.2026.
  const pvLines=[
-  [[49.950055,8.447768],[49.947624,8.452661]],
-  [[49.950331,8.448627],[49.948232,8.452661]],
-  [[49.946464,8.450343],[49.943702,8.446223]],
-  [[49.945691,8.451202],[49.943371,8.447339]],
-  [[49.951160,8.458497],[49.950442,8.455579]],
-  [[49.949448,8.455665],[49.947403,8.455064]],
-  [[49.946574,8.455150],[49.944531,8.457725]],
-  [[49.944531,8.457725],[49.949613,8.458927]]
+  // Nordwest: zwei parallele Korridore entlang der Bahn
+  [[49.9511,8.4439],[49.9469,8.4524]],
+  [[49.9505,8.4450],[49.9463,8.4530]],
+  // Südwest: zwei parallele Korridore entlang Verkehrs-/Bahntrasse Richtung Trebur
+  [[49.9444,8.4505],[49.9397,8.4428]],
+  [[49.9437,8.4515],[49.9390,8.4440]],
+  // Ost/Nordost: Straßenkorridore
+  [[49.9520,8.4590],[49.9530,8.4630]],
+  [[49.9505,8.4578],[49.9472,8.4573]],
+  [[49.9466,8.4574],[49.9434,8.4600]],
+  [[49.9434,8.4600],[49.9489,8.4638]]
  ];
- pvLines.forEach((pts,i)=>L.polyline(pts,pvLineStyle).bindPopup('<b>PV-Planungsmarkierung '+(i+1)+'</b><br><small>Roter Strich = Position gemäß korrigierter Nutzerkarte vom 02.10.2026; Planungsansatz, keine Grundstücks- oder Genehmigungsfestlegung.</small>').addTo(pvLayer));
+ pvLines.forEach((pts,i)=>L.polyline(pts,pvLineStyle).bindPopup('<b>PV-Korridor '+(i+1)+'</b><br><small>Rote Linie gemäß Nutzerkarte: Planungskorridor entlang Bahn-/Autostraßenachse. Keine Grundstücks- oder Genehmigungsfestlegung.</small>').addTo(pvLayer));
  const planLegend=L.control({position:'bottomright'}); planLegend.onAdd=function(){const d=L.DomUtil.create('div','portal-card');d.style.padding='9px';d.style.maxWidth='270px';d.innerHTML='<b>Planungsidee · nicht final</b><br><span style="color:#21a64a;font-size:18px">○</span> Grüner Kreis = Windkraft<br><span style="color:#2456c7">▲</span> Blaues Dreieck = Biogas<br><span style="color:#e51c23;font-weight:900">━</span> Roter Strich = PV<br><span style="color:#2456c7">▲</span> Energiecampus = Biogas + H₂ + H₂-Tankstelle<br><small>Alle Symbole zeigen PROJECT-Planungsansätze.</small>';return d};
  for(let i=1;i<=23;i++){
    const id='TR-'+String(i).padStart(3,'0');
@@ -68,7 +71,7 @@
  function toggleLayer(button,layer){const on=button.classList.toggle('active');on?layer.addTo(map):map.removeLayer(layer)}
  document.getElementById('showBiogas').onclick=function(){toggleLayer(this,biogasLayer)};
  document.getElementById('showH2').onclick=function(){toggleLayer(this,h2Layer)};
- document.getElementById('showPV').onclick=function(){toggleLayer(this,pvLayer)};
+ document.getElementById('showPV').classList.add('active'); document.getElementById('showPV').onclick=function(){toggleLayer(this,pvLayer)};
  document.getElementById('showWind').onclick=function(){toggleLayer(this,windLayer)};
  const boundaryUrl='https://www.geoportal.hessen.de/spatial-objects/885/collections/borders%3AgemeindenHE_wfs/items?f=json&limit=425';
  fetch(boundaryUrl).then(r=>r.ok?r.json():Promise.reject()).then(g=>{
