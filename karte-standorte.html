@@ -25,6 +25,7 @@
  const biogasLayer=L.layerGroup();
  const h2Layer=L.layerGroup();
  const pvLayer=L.layerGroup().addTo(map);
+ // Karte bewusst leer: Projektlinien, Kreise und Dreiecke entfernt.
  const windLayer=L.layerGroup();
  // Suchräume werden bewusst nur als schematische PROJECT-Flächen innerhalb der realen Basiskarte geführt.
  // Sie sind keine Flurstücke, Eigentumsgrenzen oder genehmigungsfähigen Standorte.
@@ -55,18 +56,7 @@
  winds.forEach((p,i)=>L.circleMarker(p,{radius:9,color:'#21a64a',weight:4,fill:false}).bindPopup('<b>Wind-'+String.fromCharCode(65+i)+'</b><br><small>Grüner Kreis = Windkraft · PROJECT-Standortidee, nicht final/genehmigt.</small>').addTo(windLayer));
  const pvLineStyle={color:'#e51c23',weight:5,opacity:.95};
  // SCHRITT 1 · rote PV-Korridore entlang Bahn- und Autostraßenachsen nach Nutzerkarte 02.10.2026.
- const pvLines=[
-  // Gesamte rote Geometrie gemeinsam vergrößert und nach Südost verschoben;
-  // interne Abstände/Winkel bleiben erhalten.
-  [[49.95083,8.44598],[49.94579,8.45618]],
-  [[49.95011,8.44730],[49.94507,8.45690]],
-  [[49.94610,8.44820],[49.93795,8.43595]],
-  [[49.94535,8.44925],[49.93720,8.43700]],
-  [[49.95191,8.46410],[49.95311,8.46890]],
-  [[49.95011,8.46266],[49.94615,8.46206]],
-  [[49.94543,8.46218],[49.94159,8.46530]],
-  [[49.94159,8.46530],[49.94819,8.46986]]
- ];
+ const pvLines=[];
  pvLines.forEach((pts,i)=>L.polyline(pts,pvLineStyle).bindPopup('<b>PV-Korridor '+(i+1)+'</b><br><small>Rote Linie gemäß Nutzerkarte: Planungskorridor entlang Bahn-/Autostraßenachse. Keine Grundstücks- oder Genehmigungsfestlegung.</small>').addTo(pvLayer));
  const planLegend=L.control({position:'bottomright'}); planLegend.onAdd=function(){const d=L.DomUtil.create('div','portal-card');d.style.padding='9px';d.style.maxWidth='270px';d.innerHTML='<b>Planungsidee · nicht final</b><br><span style="color:#21a64a;font-size:18px">○</span> Grüner Kreis = Windkraft<br><span style="color:#2456c7">▲</span> Blaues Dreieck = Biogas<br><span style="color:#e51c23;font-weight:900">━</span> Roter Strich = PV<br><span style="color:#2456c7">▲</span> Energiecampus = Biogas + H₂ + H₂-Tankstelle<br><small>Alle Symbole zeigen PROJECT-Planungsansätze.</small>';return d};
  for(let i=1;i<=23;i++){
