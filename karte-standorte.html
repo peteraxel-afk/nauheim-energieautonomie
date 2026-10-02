@@ -44,17 +44,16 @@
  const pvLineStyle={color:'#e51c23',weight:5,opacity:.95};
  // SCHRITT 1 · rote PV-Korridore entlang Bahn- und Autostraßenachsen nach Nutzerkarte 02.10.2026.
  const pvLines=[
-  // Nordwest: zwei parallele Korridore entlang der Bahn
-  [[49.9511,8.4439],[49.9469,8.4524]],
-  [[49.9505,8.4450],[49.9463,8.4530]],
-  // Südwest: zwei parallele Korridore entlang Verkehrs-/Bahntrasse Richtung Trebur
-  [[49.9444,8.4505],[49.9397,8.4428]],
-  [[49.9437,8.4515],[49.9390,8.4440]],
-  // Ost/Nordost: Straßenkorridore
-  [[49.9520,8.4590],[49.9530,8.4630]],
-  [[49.9505,8.4578],[49.9472,8.4573]],
-  [[49.9466,8.4574],[49.9434,8.4600]],
-  [[49.9434,8.4600],[49.9489,8.4638]]
+  // Gesamte rote Geometrie gemeinsam vergrößert und nach Südost verschoben;
+  // interne Abstände/Winkel bleiben erhalten.
+  [[49.95083,8.44598],[49.94579,8.45618]],
+  [[49.95011,8.44730],[49.94507,8.45690]],
+  [[49.94279,8.45390],[49.93715,8.44466]],
+  [[49.94195,8.45510],[49.93631,8.44610]],
+  [[49.95191,8.46410],[49.95311,8.46890]],
+  [[49.95011,8.46266],[49.94615,8.46206]],
+  [[49.94543,8.46218],[49.94159,8.46530]],
+  [[49.94159,8.46530],[49.94819,8.46986]]
  ];
  pvLines.forEach((pts,i)=>L.polyline(pts,pvLineStyle).bindPopup('<b>PV-Korridor '+(i+1)+'</b><br><small>Rote Linie gemäß Nutzerkarte: Planungskorridor entlang Bahn-/Autostraßenachse. Keine Grundstücks- oder Genehmigungsfestlegung.</small>').addTo(pvLayer));
  const planLegend=L.control({position:'bottomright'}); planLegend.onAdd=function(){const d=L.DomUtil.create('div','portal-card');d.style.padding='9px';d.style.maxWidth='270px';d.innerHTML='<b>Planungsidee · nicht final</b><br><span style="color:#21a64a;font-size:18px">○</span> Grüner Kreis = Windkraft<br><span style="color:#2456c7">▲</span> Blaues Dreieck = Biogas<br><span style="color:#e51c23;font-weight:900">━</span> Roter Strich = PV<br><span style="color:#2456c7">▲</span> Energiecampus = Biogas + H₂ + H₂-Tankstelle<br><small>Alle Symbole zeigen PROJECT-Planungsansätze.</small>';return d};
