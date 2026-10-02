@@ -52,7 +52,7 @@
  const img=document.getElementById('project-map-image'), box=document.getElementById('project-map-info');
  document.querySelectorAll('.map-image-buttons button').forEach(b=>b.addEventListener('click',function(){
   document.querySelectorAll('.map-image-buttons button').forEach(x=>x.classList.remove('active')); this.classList.add('active');
-  if(this.dataset.blank==='1'){img.removeAttribute('src');img.alt='Leere Karte – Stromspeicherstandorte nicht veröffentlicht';img.style.background='#eef2f5';img.style.minHeight='520px';}else{img.src=encodeURI(this.dataset.map);img.style.background='';img.style.minHeight='';img.alt='Projektkarte '+this.textContent+' Nauheim';} box.innerHTML=info[this.dataset.key];
+  img.src=encodeURI(this.dataset.map); img.alt='Projektkarte '+this.textContent+' Nauheim'; box.innerHTML=info[this.dataset.key];
  }));
 })();
 </script></body></html>
