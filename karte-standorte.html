@@ -16,6 +16,8 @@
 <button type="button" class="active" data-map="Windkarft - Kopie.png" data-key="wind">Windkraft</button>
 <button type="button" data-map="Biokgasanlagen.png" data-key="biogas">Biogas</button>
 <button type="button" data-map="Energiecampus.png" data-key="campus">Energiecampus</button>
+<button type="button" data-map="Energiecampus.png" data-key="h2tank">H₂-Tankstelle</button>
+<button type="button" data-map="" data-key="storage" data-blank="1">Stromspeicher</button>
 <button type="button" data-map="Wärmenetz.png" data-key="heat">Wärmenetz</button>
 <button type="button" data-map="PV Anlagen.png" data-key="pv">Photovoltaik</button>
 </div>
@@ -42,13 +44,15 @@
   wind:'<h3>Windkraft</h3><p><strong>4</strong> Potenzialstandorte</p><p>Leistung je Anlage: <strong>TBD</strong><br>Gesamtleistung: <strong>TBD</strong></p><small>PROJECT · keine genehmigten Anlagenstandorte.</small>',
   biogas:'<h3>Biogas</h3><p><strong>2</strong> Standorte im Zielbild</p><p>Elektrische Leistung: <strong>TBD</strong><br>Wärmeleistung: <strong>TBD</strong></p><small>PROJECT · technische Daten werden separat verifiziert.</small>',
   campus:'<h3>Energiecampus</h3><p>Biogas · H₂-Erzeugung · H₂-Tankstelle · Speicher / Energiemanagement</p><p>Dimensionierung: <strong>TBD</strong></p><small>PROJECT · gemeinsamer Entwicklungsraum.</small>',
+  h2tank:'<h3>H₂-Tankstelle</h3><p>Planungsstandort im Bereich des <strong>Energiecampus</strong>.</p><p>Auslegung / Kapazität: <strong>TBD</strong></p><small>PROJECT · Standortidee, keine genehmigte Anlage.</small>',
+  storage:'<h3>Stromspeicher</h3><p><strong>23 × 5 MWh = 115 MWh</strong> Ziel-Speicherkapazität.</p><p><strong>Hinweis:</strong> Die konkreten Standorte der Stromspeicher dürfen hier nicht veröffentlicht werden.</p><small>PROJECT · Darstellung bewusst ohne Standortmarkierungen.</small>',
   heat:'<h3>Wärmenetz</h3><p>Selektive Wärmeversorgung für geeignete Gebäude und Cluster.</p><p>Netzlänge: <strong>TBD</strong><br>Wärmebedarf: <strong>TBD</strong></p><small>PROJECT · keine gebaute Trasse.</small>',
   pv:'<h3>Photovoltaik</h3><p>Gesamtfläche der erfassten Ansätze: <strong>155.440 m² = 15,544 ha</strong></p><p>Installierbare Leistung: <strong>TBD</strong></p><small>PROJECT · Flächenansätze, keine Grundstücks- oder Genehmigungsfestlegung.</small>'
  };
  const img=document.getElementById('project-map-image'), box=document.getElementById('project-map-info');
  document.querySelectorAll('.map-image-buttons button').forEach(b=>b.addEventListener('click',function(){
   document.querySelectorAll('.map-image-buttons button').forEach(x=>x.classList.remove('active')); this.classList.add('active');
-  img.src=encodeURI(this.dataset.map); img.alt='Projektkarte '+this.textContent+' Nauheim'; box.innerHTML=info[this.dataset.key];
+  if(this.dataset.blank==='1'){img.removeAttribute('src');img.alt='Leere Karte – Stromspeicherstandorte nicht veröffentlicht';img.style.background='#eef2f5';img.style.minHeight='520px';}else{img.src=encodeURI(this.dataset.map);img.style.background='';img.style.minHeight='';img.alt='Projektkarte '+this.textContent+' Nauheim';} box.innerHTML=info[this.dataset.key];
  }));
 })();
 </script></body></html>
