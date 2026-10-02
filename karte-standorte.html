@@ -17,15 +17,47 @@
  const map=L.map('real-map',{scrollWheelZoom:false}).setView([49.95,8.45],13);
  L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:19,attribution:'&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'}).addTo(map);
  const project=L.layerGroup().addTo(map);
-  } }
-   }catch(e){}}
- }
- geocodeKnown();
+ 
+ const known=L.layerGroup();
+ const trafos=L.layerGroup();
+ const searchAreas=L.layerGroup();
+ const planAreas=L.layerGroup();
+ const biogasLayer=L.layerGroup();
+ const h2Layer=L.layerGroup();
+ const pvLayer=L.layerGroup();
+ const windLayer=L.layerGroup();
+ // Suchräume werden bewusst nur als schematische PROJECT-Flächen innerhalb der realen Basiskarte geführt.
+ // Sie sind keine Flurstücke, Eigentumsgrenzen oder genehmigungsfähigen Standorte.
+ const searchLegend=L.control({position:'bottomleft'}); searchLegend.onAdd=function(){const d=L.DomUtil.create('div','portal-card');d.style.padding='9px';d.innerHTML='<b>PROJECT-Suchräume</b><br>PV-West · PV-Ost · PV-Süd · PV-Energiecampus<br>Wind-A · Wind-B · Wind-C · Wind-D<br><small>Keine Grundstücks-/Genehmigungsfestlegung</small>';return d};
+ // Nur belastbare Adressen werden geokodiert; keine Koordinaten werden erfunden.
+ const knownAddresses=[
+   {name:'Aussiedlerhof / Kuhlmann',address:'Berzallee 15, 64569 Nauheim, Deutschland',status:'bekannter Projekt-Referenzpunkt'},
+   {name:'Kläranlage Nauheim',address:'Außerhalb 16, 64569 Nauheim, Deutschland',status:'bekannter Standort · eigenes Trafohäuschen im Projektbestand'},
+   {name:'Feuerwehr / Umfeld Energiecampus',address:'Außerhalb 15, 64569 Nauheim, Deutschland',status:'Referenz im Energiecampus-Umfeld'}
+ ];
+ async function geocodeKnown(){}
+
  // Beispielhafte Projektplanung: bewusst nicht als finale oder genehmigte Standorte dargestellt.
  // Feuerwehr ist als realer Referenzpunkt Außerhalb 15 verifiziert; die Projektanlagen bleiben PROJECT.
  
- // SCHRITT 1 · rote PV-Korridore entlang Bahn- und Autostraßenachsen nach Nutzerkarte 02.10.2026.
- const planLegend=L.control({position:'bottomright'}); planLegend.onAdd=function(){const d=L.DomUtil.create('div','portal-card');d.style.padding='9px';d.style.maxWidth='270px';d.innerHTML='<b>Planungsidee · nicht final</b><br><span style="color:#21a64a;font-size:18px">○</span> Grüner Kreis = Windkraft<br><span style="color:#2456c7">▲</span> Blaues Dreieck = Biogas<br><span style="color:#e51c23;font-weight:900">━</span> Roter Strich = PV<br><span style="color:#2456c7">▲</span> Energiecampus = Biogas + H₂ + H₂-Tankstelle<br><small>Alle Symbole zeigen PROJECT-Planungsansätze.</small>';return d};
+ 
+ const winds=[
+  {name:'Wind-A',p:[49.9550,8.4665]},
+  {name:'Wind-B',p:[49.9417,8.4388]},
+  {name:'Wind-C',p:[49.9409,8.4625]},
+  {name:'Wind-D',p:[49.9379,8.4505]}
+ ];
+ winds.forEach(w=>L.circleMarker(w.p,{radius:9,color:'#21a64a',weight:4,fill:false})
+   .bindPopup('<b>'+w.name+' · Windkraft</b><br>Potenzialstandort gemäß Nutzer-Masterkarte.<br><b>Anzahl im Zielbild:</b> 4 Anlagen<br><b>Leistung je Anlage:</b> TBD<br><b>Gesamtleistung:</b> TBD<br><small>PROJECT · keine genehmigte Standortfestlegung.</small>')
+   .addTo(windLayer));
+ const pvLines=[];
+ const planLegend=L.control({position:'bottomright'});
+ planLegend.onAdd=function(){
+   const d=L.DomUtil.create('div','portal-card');
+   d.style.padding='10px'; d.style.maxWidth='300px';
+   d.innerHTML='<b>Windkraft · PROJECT</b><br><span style="color:#21a64a;font-size:20px">○</span> 4 Potenzialstandorte<br><b>Leistung je Anlage:</b> TBD<br><b>Gesamtleistung:</b> TBD<br><small>Positionen gemäß Nutzer-Masterkarte; keine Genehmigungs- oder Grundstücksfestlegung.</small>';
+   return d;
+ };
  for(let i=1;i<=23;i++){
    const id='TR-'+String(i).padStart(3,'0');
    // Die Projektdatei enthält derzeit keine verifizierten Einzelkoordinaten.
@@ -39,13 +71,12 @@
  function toggleLayer(button,layer){const on=button.classList.toggle('active');on?layer.addTo(map):map.removeLayer(layer)}
  document.getElementById('showBiogas').onclick=function(){toggleLayer(this,biogasLayer)};
  document.getElementById('showH2').onclick=function(){toggleLayer(this,h2Layer)};
- document.getElementById('showPV').classList.add('active'); document.getElementById('showPV').onclick=function(){toggleLayer(this,pvLayer)};
- document.getElementById('showWind').onclick=function(){toggleLayer(this,windLayer)};
+ document.getElementById('showPV').onclick=function(){toggleLayer(this,pvLayer)};
+ windLayer.addTo(map); document.getElementById('showWind').classList.add('active'); planLegend.addTo(map); document.getElementById('showWind').onclick=function(){toggleLayer(this,windLayer)};
  const boundaryUrl='https://www.geoportal.hessen.de/spatial-objects/885/collections/borders%3AgemeindenHE_wfs/items?f=json&limit=425';
  fetch(boundaryUrl).then(r=>r.ok?r.json():Promise.reject()).then(g=>{
    const feats=(g.features||[]).filter(x=>x.properties&&x.properties.GMDE_BZ==='Nauheim'&&String(x.properties.KREIS_BZ||'').includes('Groß-Gerau'));
    if(feats.length){const layer=L.geoJSON({type:'FeatureCollection',features:feats},{style:{weight:3,fillOpacity:.04}}).addTo(map);map.fitBounds(layer.getBounds(),{padding:[12,12]})}
  }).catch(()=>{});
 })();
-
 </script></body></html>
