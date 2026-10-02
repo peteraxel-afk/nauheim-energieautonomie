@@ -23,18 +23,8 @@
  geocodeKnown();
  // Beispielhafte Projektplanung: bewusst nicht als finale oder genehmigte Standorte dargestellt.
  // Feuerwehr ist als realer Referenzpunkt Außerhalb 15 verifiziert; die Projektanlagen bleiben PROJECT.
- const campus=[49.943427,8.460815];
- const campusIcon=L.divIcon({className:'',html:'<div class="map-triangle campus-triangle"></div>',iconSize:[22,20],iconAnchor:[11,10]});
  
- L.marker(campus,{icon:campusIcon}).bindPopup('<b>Energiecampus</b><br>Biogas + H₂-Erzeugung + H₂-Tankstelle<br><small>Blaues Dreieck = gemeinsamer PROJECT-Standort / Planungsansatz.</small>').addTo(h2Layer);
- const storagePts=[[49.956,8.445],[49.952,8.452],[49.948,8.456],[49.944,8.449],[49.950,8.437],[49.958,8.458]];
- storagePts.forEach((p,i)=>L.circleMarker(p,{radius:7,color:'#6f2fc3',fillColor:'#8b49cc',fillOpacity:.82}).bindPopup('<b>Batteriespeicher · Beispiel '+(i+1)+'</b><br><small>Standort noch nicht final. Symbolische Auswahl; Zielarchitektur insgesamt 23 × 5 MWh.</small>').addTo(planAreas));
- const winds=[[49.954694,8.466823],[49.941770,8.439014],[49.941218,8.463046],[49.938124,8.451030]];
- winds.forEach((p,i)=>L.circleMarker(p,{radius:9,color:'#21a64a',weight:4,fill:false}).bindPopup('<b>Wind-'+String.fromCharCode(65+i)+'</b><br><small>Grüner Kreis = Windkraft · PROJECT-Standortidee, nicht final/genehmigt.</small>').addTo(windLayer));
- const pvLineStyle={color:'#e51c23',weight:5,opacity:.95};
  // SCHRITT 1 · rote PV-Korridore entlang Bahn- und Autostraßenachsen nach Nutzerkarte 02.10.2026.
- const pvLines=[];
- pvLines.forEach((pts,i)=>L.polyline(pts,pvLineStyle).bindPopup('<b>PV-Korridor '+(i+1)+'</b><br><small>Rote Linie gemäß Nutzerkarte: Planungskorridor entlang Bahn-/Autostraßenachse. Keine Grundstücks- oder Genehmigungsfestlegung.</small>').addTo(pvLayer));
  const planLegend=L.control({position:'bottomright'}); planLegend.onAdd=function(){const d=L.DomUtil.create('div','portal-card');d.style.padding='9px';d.style.maxWidth='270px';d.innerHTML='<b>Planungsidee · nicht final</b><br><span style="color:#21a64a;font-size:18px">○</span> Grüner Kreis = Windkraft<br><span style="color:#2456c7">▲</span> Blaues Dreieck = Biogas<br><span style="color:#e51c23;font-weight:900">━</span> Roter Strich = PV<br><span style="color:#2456c7">▲</span> Energiecampus = Biogas + H₂ + H₂-Tankstelle<br><small>Alle Symbole zeigen PROJECT-Planungsansätze.</small>';return d};
  for(let i=1;i<=23;i++){
    const id='TR-'+String(i).padStart(3,'0');
@@ -58,5 +48,4 @@
  }).catch(()=>{});
 })();
 
- [windLayer,pvLayer,biogasLayer,campusLayer].forEach(layer=>layer.clearLayers());
 </script></body></html>
